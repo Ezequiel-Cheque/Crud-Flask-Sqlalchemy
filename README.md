@@ -1,0 +1,1 @@
+Crud con mysql, flask y SQLAlchemy
