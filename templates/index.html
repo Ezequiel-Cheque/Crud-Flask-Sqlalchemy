@@ -1,12 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD</title>
-</head>
-<body>
-    <h1>Crud SqlAlchemy</h1>
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-5">
+            {% include 'partials/_message.html' %}
+            {% include 'partials/_contactForm.html' %}
+        </div>
+        <div class="col-md-7">
+            {% for contact in contacts %}
+                <div class="card mb-1 text-white bg-dark">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5>{{contact.fullname}}</h5>
+                            <div>
+                                <a href="{{ url_for('contacts.update', id=contact.id) }}" class="btn btn-outline-info btn-sm rounded-0">
+                                    Update
+                                </a>
+                                <a href="{{ url_for('contacts.delete', id=contact.id) }}" class="btn btn-outline-danger btn-sm rounded-0">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+                        <p>{{contact.email}}</p>
+                        <p>{{contact.phone}}</p>
+                    </div>
+                </div>
+            {% endfor%}
+        </div>
+    </div>
+
+{% endblock %}
